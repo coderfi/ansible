@@ -11,7 +11,7 @@ description:
         the cluster-wide CoreOS init system.
         Depending on the command, successful invocations will
         also set ansible facts prefixed by `fleet_`.
-        The ansible `fleet` module is compatible with fleet v0.5.0, though
+        The ansible `fleet` module is compatible with fleet v0.8.3, though
         it should work with newer versions.
         This module should be run on a host with a working
         `fleetctl` binary.
@@ -175,7 +175,7 @@ CMD_ARGS = {'list-machines': [
                     '-no-legend=false'],
             'list-units': [
                     '-full=true',
-                    '-fields=hash,unit,state,load,active,sub,machine,desc',
+                    '-fields=hash,unit,load,active,sub,machine',
                     '-no-legend=false']}
 
 
@@ -265,10 +265,10 @@ def parse_facts(command,
 
     elif command == 'list-units':
         '''
-        HASH UNIT  STATE  LOAD    ACTIVE    SUB    MACHINE DESC
-        xxxx sample.service inactive - - - - My Service
+        HASH    UNIT                LOAD    ACTIVE    SUB    MACHINE
+        2783a93    docker-registry.1.service    loaded    active    running    2f1d2afe.../192.168.1.1
         '''
-        by_keys = ('state', 'load', 'active', 'machine')
+        by_keys = ('load', 'active', 'sub', 'machine')
 
         facts['fleet_units'] = units = {}
         facts['fleet_units_by'] = by = {}
