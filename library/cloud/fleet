@@ -1,5 +1,11 @@
 #!/usr/bin/python
 
+##########################
+# DEPRECATED
+# THIS FILE HAS BEEN MOVED TO
+# https://github.com/coderfi/ansible-modules-extras/blob/devel/cloud/fleet.py
+##########################
+
 DOCUMENTATION = '''
 ---
 module: fleet
